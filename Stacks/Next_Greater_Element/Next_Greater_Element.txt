@@ -1,0 +1,59 @@
+Code:
+Java:
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef {
+    public static void main (String[] args) throws java.lang.Exception {
+	    int T;
+	    Scanner sc = new Scanner(System.in);
+	    T = sc.nextInt();
+	    while (T!=0)
+	    {
+	        T--;
+	        Stack<Integer> s = new Stack<>();
+	        int n = sc.nextInt();
+	        int[] array = new int[n];
+	        Hashtable<Integer, Integer> dict = new Hashtable<Integer, Integer>();
+	        for (int i = 0; i < n; i++) {
+	            array[i] = sc.nextInt();
+	        }
+	        s.push(array[0]);
+	        for (int i = 1; i < n; i++) {
+	            int next = array[i];
+	            if (!s.empty()) {
+	                int element = s.pop();
+	                while (element < next) {
+	                    dict.put(element, next);
+	                    if (s.empty()) {
+	                        break;
+	                    }
+	                    element = s.pop();
+	                }
+	                if (element > next) {
+	                    s.push(element);
+	                }
+	            }
+	            s.push(next);
+	        }
+	        while (!s.empty()) {
+	            int element = s.pop();
+	            int next = -1;
+	            dict.put(element, next);
+	        }
+	        for (int i = 0; i < n; i++) {
+	            System.out.print(dict.get(array[i]) + " ");
+	        }
+	    }
+	    sc.close();
+	}
+}
+
+
+
+
+
+
